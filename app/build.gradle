@@ -17,6 +17,9 @@ android {
         }
     }
     buildToolsVersion '26.0.2'
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

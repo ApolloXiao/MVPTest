@@ -1,13 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.apollo.mvptest.home.MainFragment">
+<layout>
 
-    <TextView
-        android:id="@+id/tv"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hello_main_fragment" />
+        tools:context="com.apollo.mvptest.home.MainFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="hello_main_fragment" />
+
+    </FrameLayout>
+</layout>

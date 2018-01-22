@@ -2,6 +2,7 @@ package com.apollo.mvptest.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.apollo.mvptest.R;
+import com.apollo.mvptest.databinding.FragmentMainBinding;
 import com.apollo.mvptest.usercenter.Main2Activity;
 
 import javax.inject.Inject;
@@ -29,6 +31,8 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Inject
     String id;
 
+    private FragmentMainBinding binding;
+
     private OnFragmentInteractionListener mListener;
     private TextView textView;
 
@@ -42,16 +46,16 @@ public class MainFragment extends Fragment implements MainContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("1111111","onCreateView");
-        View view=inflater.inflate(R.layout.fragment_main, container, false);
-        textView=view.findViewById(R.id.tv);
-        textView.setOnClickListener(new View.OnClickListener() {
+        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
+
+        binding.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), Main2Activity.class));
             }
         });
         presenter.setText();
-        return view;
+        return binding.getRoot();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,7 +98,7 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     @Override
     public void setText(String text) {
-        textView.setText(text+id);
+        binding.tv.setText(text+id);
     }
 
     /**
