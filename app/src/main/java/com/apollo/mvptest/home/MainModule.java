@@ -1,7 +1,7 @@
 package com.apollo.mvptest.home;
 
-import com.apollo.mvptest.di.ActivityScoped;
-import com.apollo.mvptest.di.FragmentScoped;
+import com.apollo.mvptest.di.scoped.ActivityScoped;
+import com.apollo.mvptest.di.scoped.FragmentScoped;
 
 import dagger.Binds;
 import dagger.Module;

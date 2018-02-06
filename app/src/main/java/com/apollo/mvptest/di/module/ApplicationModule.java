@@ -1,4 +1,4 @@
-package com.apollo.mvptest.di;
+package com.apollo.mvptest.di.module;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,12 +13,13 @@ import dagger.Module;
  * One of the advantages of Dagger.Android is that your
  * Application & Activities are provided into your graph for you.
  * {@link
- * AppComponent}.
+ * com.apollo.mvptest.di.component.AppComponent}.
  */
 @Module
 public abstract class ApplicationModule {
     //expose Application as an injectable context
     @Binds
     abstract Context bindContext(Application application);
+
 }
 

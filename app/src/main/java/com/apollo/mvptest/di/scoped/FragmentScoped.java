@@ -1,4 +1,4 @@
-package com.apollo.mvptest.di;
+package com.apollo.mvptest.di.scoped;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -5,4 +5,5 @@ package com.apollo.mvptest.base;
  */
 
 public interface BaseView<T> {
+    void showErrorMsg(String msg);
 }

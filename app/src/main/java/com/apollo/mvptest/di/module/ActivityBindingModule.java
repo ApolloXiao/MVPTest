@@ -1,5 +1,6 @@
-package com.apollo.mvptest.di;
+package com.apollo.mvptest.di.module;
 
+import com.apollo.mvptest.di.scoped.ActivityScoped;
 import com.apollo.mvptest.home.MainActivity;
 import com.apollo.mvptest.home.MainModule;
 import com.apollo.mvptest.home.MainModule1;

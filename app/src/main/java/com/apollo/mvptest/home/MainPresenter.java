@@ -1,37 +1,60 @@
 package com.apollo.mvptest.home;
 
-import android.support.annotation.Nullable;
+import android.util.Log;
 
-import com.apollo.mvptest.di.ActivityScoped;
+import com.apollo.mvptest.base.RxPresenter;
+import com.apollo.mvptest.di.scoped.ActivityScoped;
+import com.apollo.mvptest.model.OneModel;
+import com.apollo.mvptest.model.bean.UserInfo;
+import com.apollo.mvptest.model.http.CommonSubscriber;
+import com.apollo.mvptest.model.http.response.HttpResponse;
+import com.apollo.mvptest.utils.RxUtil;
+
+import org.reactivestreams.Publisher;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import io.reactivex.Flowable;
+import io.reactivex.functions.Function;
 
 /**
  * Created by lei.xiao on 2018/1/19.
  */
 @ActivityScoped
-public class MainPresenter implements MainContract.Presenter {
-    @Nullable
-    private MainContract.View mainView;
+public class MainPresenter extends RxPresenter<MainContract.View> implements MainContract.Presenter{
+
+    private OneModel oneModel;
+
 
     @Inject
-    MainPresenter(){
-
+    MainPresenter(OneModel oneModel){
+        this.oneModel=oneModel;
     }
 
     @Override
     public void setText() {
         String text="Test";
-        mainView.setText(text);
+        view.setText(text);
     }
 
-    @Override
-    public void attachView(MainContract.View view) {
-        mainView=view;
+    private void getUserInfo(){
+        addSubscribe(oneModel.getUserInfo()
+                .compose(RxUtil.<HttpResponse<UserInfo>>rxSchedulerHelper())
+                .flatMap(new Function<HttpResponse<UserInfo>, Publisher<UserInfo>>() {
+                    @Override
+                    public Publisher<UserInfo> apply(HttpResponse<UserInfo> userInfoHttpResponse) throws Exception {
+                        return Flowable.just(userInfoHttpResponse.getData());
+                    }
+                })
+                .subscribeWith(new CommonSubscriber<UserInfo>(view){
+
+                    @Override
+                    public void onNext(UserInfo userInfo) {
+
+                    }
+                }));
     }
 
-    @Override
-    public void detachView() {
-        mainView=null;
-    }
 }

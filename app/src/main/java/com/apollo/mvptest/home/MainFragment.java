@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,13 +43,18 @@ public class MainFragment extends Fragment implements MainContract.View {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d("1111111","onCreateView");
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
+        return binding.getRoot();
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.attachView(this);
         binding.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +62,6 @@ public class MainFragment extends Fragment implements MainContract.View {
             }
         });
         presenter.setText();
-        return binding.getRoot();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -68,7 +74,6 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        presenter.attachView(this);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -84,21 +89,27 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         Log.d("1111111","onResume");
-        presenter.attachView(this);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(presenter!=null){
+            presenter.detachView();
+        }
     }
 
     @Override
     public void setText(String text) {
         binding.tv.setText(text+id);
+    }
+
+    @Override
+    public void showErrorMsg(String msg) {
+
     }
 
     /**

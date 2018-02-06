@@ -1,6 +1,6 @@
 package com.apollo.mvptest.home;
 
-import com.apollo.mvptest.di.ActivityScoped;
+import com.apollo.mvptest.di.scoped.ActivityScoped;
 
 import dagger.Module;
 import dagger.Provides;
