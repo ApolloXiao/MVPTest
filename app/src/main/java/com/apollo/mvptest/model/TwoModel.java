@@ -1,6 +1,6 @@
 package com.apollo.mvptest.model;
 
-import com.apollo.mvptest.model.bean.UserInfo;
+import com.apollo.mvptest.model.bean.Weather;
 import com.apollo.mvptest.model.db.DBHelper;
 import com.apollo.mvptest.model.http.repository.TwoRepository;
 import com.apollo.mvptest.model.http.response.HttpResponse;
@@ -24,7 +24,7 @@ public class TwoModel extends BaseModel implements TwoRepository {
     }
 
     @Override
-    public Flowable<HttpResponse<UserInfo>> getUserInfo() {
-        return twoRepository.getUserInfo();
+    public Flowable<HttpResponse<Weather>> getWeatherInfo() {
+        return twoRepository.getWeatherInfo();
     }
 }

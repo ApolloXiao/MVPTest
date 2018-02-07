@@ -21,40 +21,40 @@ import dagger.Provides;
  */
 
 @Module
-public abstract class AppModule {
+public class AppModule {
     @Provides
     @Singleton
-    static OneRepository provideOneRepository(OneRepositoryImpl oneRepository) {
+    OneRepository provideOneRepository(OneRepositoryImpl oneRepository) {
         return oneRepository;
     }
 
     @Provides
     @Singleton
-    static TwoRepository provideTwoRepository(TwoRepositoryImpl twoRepository) {
+    TwoRepository provideTwoRepository(TwoRepositoryImpl twoRepository) {
         return twoRepository;
     }
 
     @Provides
     @Singleton
-    static DBHelper provideDBHelper(DBHelperImpl dbHelper) {
+    DBHelper provideDBHelper(DBHelperImpl dbHelper) {
         return dbHelper;
     }
 
     @Provides
     @Singleton
-    static PreferencesHelper providePreferencesHelper(PreferencesHelperImpl preferencesHelper) {
+    PreferencesHelper providePreferencesHelper(PreferencesHelperImpl preferencesHelper) {
         return preferencesHelper;
     }
 
     @Provides
     @Singleton
-    static OneModel provideOneModel(DBHelperImpl dbHelper, PreferencesHelperImpl preferencesHelper, OneRepositoryImpl oneRepository) {
+    OneModel provideOneModel(DBHelperImpl dbHelper, PreferencesHelperImpl preferencesHelper, OneRepositoryImpl oneRepository) {
         return new OneModel(dbHelper, preferencesHelper, oneRepository);
     }
 
     @Provides
     @Singleton
-    static TwoModel provideTwoModel(DBHelperImpl dbHelper, PreferencesHelperImpl preferencesHelper, TwoRepositoryImpl twoRepository) {
+    TwoModel provideTwoModel(DBHelperImpl dbHelper, PreferencesHelperImpl preferencesHelper, TwoRepositoryImpl twoRepository) {
         return new TwoModel(dbHelper, preferencesHelper, twoRepository);
     }
 }

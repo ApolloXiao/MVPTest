@@ -6,13 +6,10 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.apollo.mvptest.R;
 import com.apollo.mvptest.databinding.FragmentMainBinding;
@@ -36,7 +33,6 @@ public class MainFragment extends Fragment implements MainContract.View {
     private FragmentMainBinding binding;
 
     private OnFragmentInteractionListener mListener;
-    private TextView textView;
 
     @Inject
     public MainFragment() {
@@ -46,7 +42,6 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("1111111","onCreateView");
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
         return binding.getRoot();
     }
@@ -86,12 +81,6 @@ public class MainFragment extends Fragment implements MainContract.View {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("1111111","onResume");
     }
 
     @Override

@@ -1,18 +1,14 @@
 package com.apollo.mvptest.home;
 
-import android.util.Log;
-
 import com.apollo.mvptest.base.RxPresenter;
 import com.apollo.mvptest.di.scoped.ActivityScoped;
 import com.apollo.mvptest.model.OneModel;
-import com.apollo.mvptest.model.bean.UserInfo;
+import com.apollo.mvptest.model.bean.Weather;
 import com.apollo.mvptest.model.http.CommonSubscriber;
 import com.apollo.mvptest.model.http.response.HttpResponse;
 import com.apollo.mvptest.utils.RxUtil;
 
 import org.reactivestreams.Publisher;
-
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -35,24 +31,23 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
 
     @Override
     public void setText() {
-        String text="Test";
-        view.setText(text);
+        getWeatherInfo();
     }
 
-    private void getUserInfo(){
-        addSubscribe(oneModel.getUserInfo()
-                .compose(RxUtil.<HttpResponse<UserInfo>>rxSchedulerHelper())
-                .flatMap(new Function<HttpResponse<UserInfo>, Publisher<UserInfo>>() {
+    private void getWeatherInfo(){
+        addSubscribe(oneModel.getWeatherInfo()
+                .compose(RxUtil.<HttpResponse<Weather>>rxSchedulerHelper())
+                .flatMap(new Function<HttpResponse<Weather>, Publisher<Weather>>() {
                     @Override
-                    public Publisher<UserInfo> apply(HttpResponse<UserInfo> userInfoHttpResponse) throws Exception {
+                    public Publisher<Weather> apply(HttpResponse<Weather> userInfoHttpResponse) throws Exception {
                         return Flowable.just(userInfoHttpResponse.getData());
                     }
                 })
-                .subscribeWith(new CommonSubscriber<UserInfo>(view){
+                .subscribeWith(new CommonSubscriber<Weather>(view){
 
                     @Override
-                    public void onNext(UserInfo userInfo) {
-
+                    public void onNext(Weather weather) {
+                        view.setText(weather.getQuality());
                     }
                 }));
     }

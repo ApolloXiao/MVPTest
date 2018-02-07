@@ -1,6 +1,6 @@
 package com.apollo.mvptest.model.http.repository;
 
-import com.apollo.mvptest.model.bean.UserInfo;
+import com.apollo.mvptest.model.bean.Weather;
 import com.apollo.mvptest.model.http.response.HttpResponse;
 
 import io.reactivex.Flowable;
@@ -11,5 +11,5 @@ import io.reactivex.Flowable;
 
 public interface TwoRepository {
 
-    Flowable<HttpResponse<UserInfo>> getUserInfo();
+    Flowable<HttpResponse<Weather>> getWeatherInfo();
 }

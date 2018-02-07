@@ -3,6 +3,7 @@
     package="com.apollo.mvptest">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="false"

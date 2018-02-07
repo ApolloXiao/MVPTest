@@ -1,6 +1,6 @@
 package com.apollo.mvptest.model;
 
-import com.apollo.mvptest.model.bean.UserInfo;
+import com.apollo.mvptest.model.bean.Weather;
 import com.apollo.mvptest.model.db.DBHelper;
 import com.apollo.mvptest.model.http.repository.OneRepository;
 import com.apollo.mvptest.model.http.response.HttpResponse;
@@ -24,7 +24,7 @@ public class OneModel extends BaseModel implements OneRepository {
     }
 
     @Override
-    public Flowable<HttpResponse<UserInfo>> getUserInfo() {
-        return oneRepository.getUserInfo();
+    public Flowable<HttpResponse<Weather>> getWeatherInfo() {
+        return oneRepository.getWeatherInfo();
     }
 }
