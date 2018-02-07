@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 
 import com.apollo.mvptest.R;
 import com.apollo.mvptest.databinding.FragmentMainBinding;
+import com.apollo.mvptest.di.scoped.ActivityScoped;
 import com.apollo.mvptest.usercenter.Main2Activity;
 
 import javax.inject.Inject;
+
+import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +26,8 @@ import javax.inject.Inject;
  * {@link MainFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class MainFragment extends Fragment implements MainContract.View {
+@ActivityScoped
+public class MainFragment extends DaggerFragment implements MainContract.View {
     @Inject
     MainContract.Presenter presenter;
 

@@ -9,10 +9,10 @@ import dagger.Provides;
  * Created by lei.xiao on 2018/1/19.
  */
 @Module
-public abstract class MainModule1 {
+public class MainModule1 {
     @Provides
     @ActivityScoped
-    static String provideId() {
+     String provideId() {
         return "123";
     }
 }
