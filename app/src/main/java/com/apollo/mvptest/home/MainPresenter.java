@@ -52,4 +52,8 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
                 }));
     }
 
+    public String getID(){
+        return "MainPresenterID";
+    }
+
 }

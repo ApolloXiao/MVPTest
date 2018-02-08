@@ -17,6 +17,7 @@ import com.apollo.mvptest.di.scoped.ActivityScoped;
 import com.apollo.mvptest.usercenter.Main2Activity;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.support.DaggerFragment;
 
@@ -33,6 +34,14 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
 
     @Inject
     String id;
+
+    @Inject
+    @Named("mainPresenterID")
+    String presenterId;
+
+    @Inject
+    @Named("mainActivityID")
+    String activityId;
 
     private FragmentMainBinding binding;
 
@@ -97,7 +106,7 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
 
     @Override
     public void setText(String text) {
-        binding.tv.setText(text+id);
+        binding.tv.setText(text+id+presenterId+activityId);
     }
 
     @Override

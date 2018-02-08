@@ -32,4 +32,8 @@ public class MainActivity extends BaseActivity implements MainFragment.OnFragmen
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    public String getID(){
+        return "MainActivityID";
+    }
 }

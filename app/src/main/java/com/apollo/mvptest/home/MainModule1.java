@@ -12,7 +12,7 @@ import dagger.Provides;
 public class MainModule1 {
     @Provides
     @ActivityScoped
-     String provideId() {
+    String provideId() {
         return "123";
     }
 }
